@@ -413,7 +413,7 @@
                     <div class="form-group">
                         <label>⏲️ Timezone</label>
                         <select id="timezone">
-                            <option value="5.5">IST (GMT+5:30)</option>
+                            <option value="Asia/Kolkata">IST (GMT+5:30)</option>
                             <option value="0">GMT</option>
                             <option value="-5">EST (GMT-5)</option>
                             <option value="-8">PST (GMT-8)</option>
@@ -1144,20 +1144,47 @@ const dob = document.getElementById("dob").value
 const tob = document.getElementById("tob").value
 const lat = document.getElementById("latitude").value
 const lon = document.getElementById("longitude").value
-const timezone = document.getElementById("timezone").value
 
 const datetime = dob+"T"+tob+":00+05:30"
 
 const url =
-"https://api.prokerala.com/v2/astrology/planet-position?datetime="+datetime+
+"https://api.prokerala.com/v2/astrology/planet-position"+
+"?datetime="+datetime+
 "&coordinates="+lat+","+lon+
-"&ayanamsa=1"+
-"&timezone="+timezone
+"&ayanamsa=lahiri"
 
 const response = await fetch(url,{
+method:"GET",
 headers:{
-Authorization:"Bearer "+token
+"Authorization":"Bearer "+token
 }
+})
+
+const result = await response.json()
+
+console.log(result)
+
+if(result.data){
+
+document.getElementById("result").innerHTML =
+"<h3>Planet Positions</h3><pre>"+JSON.stringify(result.data,null,2)+"</pre>"
+
+}else{
+
+document.getElementById("result").innerHTML =
+"❌ API returned no data"
+
+}
+
+}catch(error){
+
+console.error(error)
+
+document.getElementById("result").innerHTML =
+"❌ API Error"
+
+}
+
 })
 
 const result = await response.json()
