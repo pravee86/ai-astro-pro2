@@ -442,6 +442,9 @@ return data.access_token
                         </select>
                     </div>
                 </div>
+                <button onclick="generateKundli()">Generate Kundli</button>
+
+<div id="result" style="margin-top:20px;padding:15px;background:#f0f0f0;border-radius:8px;"></div>
                 
                 <div class="advanced-options">
                     <h3>Quick Access</h3>
@@ -1132,9 +1135,17 @@ return data.access_token
             showAlert('✨ Welcome to AI Astro Pro! Fill in your details to begin.', 'info');
         };
     </script>
-</body>
-</html>
-<script>
+    <script>
+
+async function getAccessToken(){
+
+const response = await fetch("https://ai-astro-backend.vercel.app/api/token")
+
+const data = await response.json()
+
+return data.access_token
+
+}
 
 async function generateKundli(){
 
@@ -1172,4 +1183,7 @@ document.getElementById("result").innerHTML =
 
 </script>
 
-<button onclick="generateKundli()">Generate Kundli</button>
+</body>
+</html>
+</body>
+</html>
