@@ -1,0 +1,1114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Astro Pro - Advanced Features</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .tab-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 1em;
+            color: #666;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.3s;
+        }
+
+        .tab:hover {
+            color: #764ba2;
+            background: #f8f4ff;
+        }
+
+        .tab.active {
+            color: #764ba2;
+            border-bottom: 3px solid #764ba2;
+            font-weight: 600;
+        }
+
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #764ba2;
+            box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.1);
+        }
+
+        .advanced-options {
+            background: #f8f4ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .checkbox-item:hover {
+            background: rgba(118, 75, 162, 0.1);
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            margin: 30px auto;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(118, 75, 162, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .report-section {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            display: none;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .report-section.show {
+            display: block;
+        }
+
+        .chart-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .chart-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .chart-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .chart-card h4 {
+            color: #764ba2;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .yoga-list {
+            list-style: none;
+        }
+
+        .yoga-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background: #f0e6ff;
+            border-radius: 5px;
+            font-size: 0.95em;
+            border-left: 3px solid #764ba2;
+        }
+
+        .dasha-timeline {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .dasha-period {
+            background: #e6f3ff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            border: 1px solid #667eea;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dasha-period:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .gemstone-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            margin: 10px 0;
+            border: 1px solid #e0e0e0;
+        }
+
+        .gemstone-emoji {
+            font-size: 2.5em;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .gemstone-info h5 {
+            color: #764ba2;
+            margin-bottom: 5px;
+            font-size: 1.1em;
+        }
+
+        .gemstone-info p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #764ba2;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .alert.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #f0f0f0;
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.3s;
+            animation: progress 2s ease infinite;
+        }
+
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .tab { padding: 8px 16px; font-size: 0.9em; }
+            .checkbox-group { gap: 10px; }
+            .gemstone-card { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✨ AI Astro Pro ✨</h1>
+            <p class="subtitle">Advanced Vedic Astrology with AI Intelligence</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Tabs -->
+            <div class="tab-container">
+                <button class="tab active" onclick="switchTab('basic', this)">Basic Details</button>
+                <button class="tab" onclick="switchTab('advanced', this)">Advanced Options</button>
+                <button class="tab" onclick="switchTab('reports', this)">Reports</button>
+                <button class="tab" onclick="switchTab('remedies', this)">Remedies</button>
+            </div>
+
+            <!-- Alert Container -->
+            <div id="alertContainer" class="alert"></div>
+
+            <!-- Progress Bar -->
+            <div id="progressBar" class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+
+            <!-- Basic Details Tab -->
+            <div id="basic-tab" class="tab-pane active">
+                <h2>Enter Birth Details</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>📅 Date of Birth</label>
+                        <input type="date" id="dob" value="1990-01-01">
+                    </div>
+                    <div class="form-group">
+                        <label>⏰ Time of Birth</label>
+                        <input type="time" id="tob" value="12:00">
+                    </div>
+                    <div class="form-group">
+                        <label>📍 Place of Birth</label>
+                        <input type="text" id="place" value="Mumbai, India" placeholder="City, Country">
+                    </div>
+                    <div class="form-group">
+                        <label>🌍 Latitude</label>
+                        <input type="text" id="latitude" value="19.0760" placeholder="Auto-filled">
+                    </div>
+                    <div class="form-group">
+                        <label>🌍 Longitude</label>
+                        <input type="text" id="longitude" value="72.8777" placeholder="Auto-filled">
+                    </div>
+                    <div class="form-group">
+                        <label>⏲️ Timezone</label>
+                        <select id="timezone">
+                            <option value="5.5">IST (GMT+5:30)</option>
+                            <option value="0">GMT</option>
+                            <option value="-5">EST (GMT-5)</option>
+                            <option value="-8">PST (GMT-8)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="advanced-options">
+                    <h3>Quick Access</h3>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="dailyHoroscope" checked> 🌟 Daily Horoscope
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="careerInsights"> 💼 Career Insights
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="healthReport"> ❤️ Health Report
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="wealthReport"> 💰 Wealth Prospects
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced Options Tab -->
+            <div id="advanced-tab" class="tab-pane">
+                <h2>Advanced Astrological Options</h2>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>🌀 Ayanamsa System</label>
+                        <select id="ayanamsa">
+                            <option value="lahiri">Lahiri (Chitra Paksha)</option>
+                            <option value="raman">Raman</option>
+                            <option value="krishnamurti">Krishnamurti (KP)</option>
+                            <option value="trueChitra">True Chitra</option>
+                            <option value="fagan">Fagan/Bradley</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>🏠 House System</label>
+                        <select id="houseSystem">
+                            <option value="whole">Whole Sign</option>
+                            <option value="placidus">Placidus</option>
+                            <option value="equal">Equal House</option>
+                            <option value="kp">KP System</option>
+                            <option value="bhava">Bhava Chalit</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>📊 Divisional Charts</label>
+                        <select id="divisionalChart" multiple size="3">
+                            <option value="d1" selected>Rasi (D1) - Main Chart</option>
+                            <option value="d9">Navamsa (D9) - Marriage</option>
+                            <option value="d10">Dasamsa (D10) - Career</option>
+                            <option value="d7">Saptamsa (D7) - Children</option>
+                            <option value="d12">Dwadasamsa (D12) - Parents</option>
+                            <option value="d30">Trimsamsa (D30) - Evils</option>
+                        </select>
+                        <small>Hold Ctrl/Cmd to select multiple</small>
+                    </div>
+                </div>
+
+                <div class="advanced-options">
+                    <h3>Special Calculations</h3>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="dashaCalculation" checked> ⏳ Vimshottari Dasha
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="yogaDetection" checked> 🌟 Planetary Yogas
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="ashtakavarga"> 📊 Ashtakavarga
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="transitAnalysis" checked> 🚀 Transit Analysis
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="compatibility"> 💑 Compatibility
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="muhurtha"> ⏰ Muhurtha (Electional)
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Compatibility Section -->
+                <div id="compatibilitySection" style="display: none; margin-top: 20px; padding: 20px; background: #f0e6ff; border-radius: 10px;">
+                    <h3>Second Person Details (For Compatibility)</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>📅 Date of Birth</label>
+                            <input type="date" id="dob2" value="1990-06-15">
+                        </div>
+                        <div class="form-group">
+                            <label>⏰ Time of Birth</label>
+                            <input type="time" id="tob2" value="14:30">
+                        </div>
+                        <div class="form-group">
+                            <label>📍 Place of Birth</label>
+                            <input type="text" id="place2" value="Delhi, India">
+                        </div>
+                        <div class="form-group">
+                            <label>👤 Relationship</label>
+                            <select id="relationship">
+                                <option value="marriage">Marriage</option>
+                                <option value="business">Business Partner</option>
+                                <option value="friendship">Friendship</option>
+                                <option value="parent">Parent-Child</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports Tab -->
+            <div id="reports-tab" class="tab-pane">
+                <h2>Generate Detailed Reports</h2>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>📄 Report Type</label>
+                        <select id="reportType">
+                            <option value="comprehensive">Comprehensive Analysis</option>
+                            <option value="career">Career Focus</option>
+                            <option value="relationship">Relationship Focus</option>
+                            <option value="health">Health Focus</option>
+                            <option value="wealth">Wealth Focus</option>
+                            <option value="spiritual">Spiritual Growth</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>📅 Report Period</label>
+                        <select id="reportPeriod">
+                            <option value="current">Current Period</option>
+                            <option value="1year">Next 1 Year</option>
+                            <option value="3years">Next 3 Years</option>
+                            <option value="5years">Next 5 Years</option>
+                            <option value="lifetime">Lifetime</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>🎨 Report Format</label>
+                        <select id="reportFormat">
+                            <option value="detailed">Detailed Analysis</option>
+                            <option value="summary">Quick Summary</option>
+                            <option value="professional">Professional Consultation</option>
+                            <option value="simple">Simple Language</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="advanced-options">
+                    <h3>Delivery Options</h3>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="pdfReport" checked> 📥 PDF Download
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="emailReport"> 📧 Email Report
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="comparisonReport"> 🔄 Chart Comparison
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="printReport"> 🖨️ Print Friendly
+                        </label>
+                    </div>
+                    
+                    <div class="form-group" style="margin-top: 15px;" id="emailField" style="display: none;">
+                        <label>📧 Email Address</label>
+                        <input type="email" id="emailAddress" placeholder="your@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>📝 Additional Notes</label>
+                        <textarea id="reportNotes" rows="3" placeholder="Any specific questions or areas to focus on..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Remedies Tab -->
+            <div id="remedies-tab" class="tab-pane">
+                <h2>Personalized Remedies</h2>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>🙏 Remedy Type</label>
+                        <select id="remedyType">
+                            <option value="all">All Remedies</option>
+                            <option value="gemstone">Gemstones Only</option>
+                            <option value="mantra">Mantras Only</option>
+                            <option value="ritual">Rituals & Poojas</option>
+                            <option value="charity">Charity & Donations</option>
+                            <option value="lifestyle">Lifestyle Changes</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>💰 Budget Range (for gemstones)</label>
+                        <select id="budgetRange">
+                            <option value="any">Any Budget</option>
+                            <option value="low">Under ₹5000</option>
+                            <option value="medium">₹5000 - ₹20000</option>
+                            <option value="high">₹20000 - ₹50000</option>
+                            <option value="premium">Above ₹50000</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="advanced-options">
+                    <h3>Select Remedy Categories</h3>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="gemstoneRemedies" checked> 💎 Gemstone Suggestions
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="mantraRemedies" checked> 🔱 Mantra Recommendations
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="ritualRemedies" checked> 🕉️ Rituals & Poojas
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="charityRemedies" checked> 🤝 Charity Suggestions
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="fastingRemedies"> 🌙 Fasting Days
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="colorRemedies"> 🎨 Color Therapy
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" id="yogaRemedies"> 🧘 Yoga & Meditation
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="advanced-options">
+                    <h3>Remedy Intensity</h3>
+                    <select id="remedyIntensity" style="width: 100%;">
+                        <option value="mild">Mild - Basic suggestions</option>
+                        <option value="moderate" selected>Moderate - Balanced approach</option>
+                        <option value="intense">Intense - Detailed ritual instructions</option>
+                        <option value="comprehensive">Comprehensive - All possible remedies</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Generate Button -->
+            <button onclick="generateReport()">
+                <span class="loading-spinner" id="generateSpinner" style="display: none;"></span>
+                <span id="buttonText">Generate Advanced Reading ✨</span>
+            </button>
+
+            <!-- Results Section -->
+            <div id="report" class="report-section">
+                <h2>Your Advanced Astrology Report</h2>
+                
+                <!-- Chart Cards -->
+                <div class="chart-container">
+                    <div class="chart-card">
+                        <h4>🌙 Rasi Chart (D1)</h4>
+                        <div id="rasiChart">
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; text-align: center;">
+                                <div style="background: #f0e6ff; padding: 10px;">🦁 Leo<br>Sun</div>
+                                <div style="background: #e6f3ff; padding: 10px;">👩 Virgo<br>Moon</div>
+                                <div style="background: #f0e6ff; padding: 10px;">⚖️ Libra<br>Venus</div>
+                                <div style="background: #e6f3ff; padding: 10px;">🦂 Scorpio<br>Mars</div>
+                                <div style="background: #e6f3ff; padding: 10px;">🏹 Sagittarius<br>Jupiter</div>
+                                <div style="background: #f0e6ff; padding: 10px;">🐐 Capricorn<br>Saturn</div>
+                                <div style="background: #e6f3ff; padding: 10px;">💧 Aquarius<br>Rahu</div>
+                                <div style="background: #f0e6ff; padding: 10px;">🐟 Pisces<br>Ketu</div>
+                                <div style="background: #e6f3ff; padding: 10px;">🐏 Aries<br>Mercury</div>
+                                <div style="background: #f0e6ff; padding: 10px;">🐂 Taurus<br>-</div>
+                                <div style="background: #e6f3ff; padding: 10px;">👯 Gemini<br>-</div>
+                                <div style="background: #f0e6ff; padding: 10px;">🦀 Cancer<br>-</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <h4>💍 Navamsa (D9)</h4>
+                        <div id="navamsaChart">
+                            <div style="padding: 20px; text-align: center; background: #f8f4ff; border-radius: 5px;">
+                                <p>🌕 Venus in 7th House - Strong marriage prospects</p>
+                                <p>💫 Jupiter in 5th House - Blessed with children</p>
+                                <p>✨ Sun in 10th House - Career success after marriage</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <h4>💼 Dasamsa (D10)</h4>
+                        <div id="dasamsaChart">
+                            <div style="padding: 20px; text-align: center; background: #f8f4ff; border-radius: 5px;">
+                                <p>💪 Mars in 10th House - Leadership role</p>
+                                <p>📈 Mercury in 2nd House - Financial gains through communication</p>
+                                <p>🌟 Saturn in 1st House - Steady career growth after 35</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Yogas Detected -->
+                <div class="chart-card" style="margin-top: 20px;">
+                    <h4>🌟 Detected Planetary Yogas</h4>
+                    <ul class="yoga-list" id="yogaList">
+                        <li><strong>Gajakesari Yoga</strong> - Jupiter in Kendra from Moon: Wisdom, fame, and prosperity</li>
+                        <li><strong>Pancha Mahapurusha Yoga</strong> - Mars in Own Sign (Kuj Yoga): Courage and leadership</li>
+                        <li><strong>Dhana Yoga</strong> - 2nd Lord in 11th House: Wealth through career</li>
+                        <li><strong>Raj Yoga</strong> - 9th Lord in 10th House: Success and authority</li>
+                        <li><strong>Vipreet Raj Yoga</strong> - 6th Lord in 12th House: Victory over enemies</li>
+                    </ul>
+                </div>
+
+                <!-- Dasha Timeline -->
+                <div class="chart-card" style="margin-top: 20px;">
+                    <h4>⏳ Vimshottari Dasha Timeline</h4>
+                    <div class="dasha-timeline" id="dashaTimeline">
+                        <span class="dasha-period" onclick="showDashaDetails('mars')">Mars: 2023-2030</span>
+                        <span class="dasha-period" onclick="showDashaDetails('rahu')">Rahu: 2030-2048</span>
+                        <span class="dasha-period" onclick="showDashaDetails('jupiter')">Jupiter: 2048-2064</span>
+                        <span class="dasha-period" onclick="showDashaDetails('saturn')">Saturn: 2064-2083</span>
+                        <span class="dasha-period" onclick="showDashaDetails('mercury')">Mercury: 2083-2100</span>
+                    </div>
+                    <div id="dashaDetails" style="margin-top: 15px; padding: 15px; background: #e6f3ff; border-radius: 5px; display: none;">
+                        <p><strong>Mars Dasha (2023-2030):</strong> Period of action, courage, and initiative. Good for career starts, competitions, and physical activities. Avoid conflicts and impulsive decisions.</p>
+                    </div>
+                </div>
+
+                <!-- Transit Forecast -->
+                <div class="chart-card" style="margin-top: 20px;">
+                    <h4>🚀 Current Transits</h4>
+                    <div style="display: grid; gap: 10px;">
+                        <div style="padding: 10px; background: #f0e6ff; border-radius: 5px;">
+                            <strong>Saturn in Aquarius:</strong> Career responsibilities increase, patience required
+                        </div>
+                        <div style="padding: 10px; background: #e6f3ff; border-radius: 5px;">
+                            <strong>Jupiter in Aries:</strong> Expansion in education and travels
+                        </div>
+                        <div style="padding: 10px; background: #f0e6ff; border-radius: 5px;">
+                            <strong>Rahu in Pisces:</strong> Spiritual inclinations, confusion in relationships
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gemstone Recommendations -->
+                <div class="chart-card" style="margin-top: 20px;">
+                    <h4>💎 Recommended Gemstones</h4>
+                    <div class="gemstone-card">
+                        <div class="gemstone-emoji">🔴</div>
+                        <div class="gemstone-info">
+                            <h5>Red Coral (Moonga) - ₹5,000-15,000</h5>
+                            <p>For strengthening Mars - Wear on Tuesday, Ring finger. Increases courage, confidence, and vitality.</p>
+                            <small>🔥 Benefits: Physical strength, career success, protection from accidents</small>
+                        </div>
+                    </div>
+                    <div class="gemstone-card">
+                        <div class="gemstone-emoji">💛</div>
+                        <div class="gemstone-info">
+                            <h5>Yellow Sapphire (Pukhraj) - ₹10,000-50,000</h5>
+                            <p>For strengthening Jupiter - Wear on Thursday, Index finger. Brings wisdom, wealth, and good fortune.</p>
+                            <small>📚 Benefits: Education, marriage, financial prosperity</small>
+                        </div>
+                    </div>
+                    <div class="gemstone-card">
+                        <div class="gemstone-emoji">💙</div>
+                        <div class="gemstone-info">
+                            <h5>Blue Sapphire (Neelam) - ₹15,000-60,000</h5>
+                            <p>For strengthening Saturn - Wear on Saturday, Middle finger. Discipline, authority, and long-term success.</p>
+                            <small>⚖️ Benefits: Career stability, spiritual growth, overcoming delays</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mantra Recommendations -->
+                <div class="chart-card" style="margin-top: 20px;">
+                    <h4>🔱 Personalized Mantras</h4>
+                    <div style="padding: 15px; background: #f8f4ff; border-radius: 5px; margin: 10px 0;">
+                        <p><strong>🌞 Gayatri Mantra:</strong> 108 times daily for overall well-being</p>
+                        <p><em>Om Bhur Bhuvaḥ Swaḥ, Tat Savitur Vareñyaṃ Bhargo Devasya Dhīmahi, Dhiyo Yo Naḥ Prachodayāt</em></p>
+                    </div>
+                    <div style="padding: 15px; background: #f8f4ff; border-radius: 5px; margin: 10px 0;">
+                        <p><strong>🪐 Maha Mrityunjaya Mantra:</strong> 21 times on Mondays for health</p>
+                        <p><em>Om Tryambakam Yajamahe Sugandhim Pushtivardhanam, Urvarukamiva Bandhanan Mrityor Mukshiya Maamritat</em></p>
+                    </div>
+                </div>
+
+                <!-- Rituals & Remedies -->
+                <div class="chart-card" style="margin-top: 20px;">
+                    <h4>🕉️ Recommended Rituals</h4>
+                    <ul class="yoga-list">
+                        <li><strong>Monday:</strong> Offer water to Shiva Lingam, fast till sunset</li>
+                        <li><strong>Thursday:</strong> Feed yellow food (chana, bananas) to Brahmins or cows</li>
+                        <li><strong>Saturday:</strong> Feed black sesame seeds to fish, donate black clothes</li>
+                        <li><strong>Full Moon:</strong> Perform Satya Narayan Pooja for family peace</li>
+                    </ul>
+                </div>
+
+                <!-- Download Buttons -->
+                <div style="display: flex; gap: 15px; justify-content: center; margin-top: 30px; flex-wrap: wrap;">
+                    <button onclick="downloadPDF()" style="margin: 0; background: linear-gradient(135deg, #28a745 0%, #20c997 100%);">
+                        📥 Download PDF Report
+                    </button>
+                    <button onclick="shareReport()" style="margin: 0; background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);">
+                        📧 Email Report
+                    </button>
+                    <button onclick="printReport()" style="margin: 0; background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);">
+                        🖨️ Print Report
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        function switchTab(tabName, element) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Update tab buttons
+            document.querySelectorAll('.tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            element.classList.add('active');
+            
+            // Show message
+            showAlert(`Switched to ${tabName} options`, 'info');
+        }
+
+        // Show/hide compatibility section based on checkbox
+        document.getElementById('compatibility')?.addEventListener('change', function(e) {
+            const section = document.getElementById('compatibilitySection');
+            if (section) {
+                section.style.display = e.target.checked ? 'block' : 'none';
+            }
+        });
+
+        // Show/hide email field based on checkbox
+        document.getElementById('emailReport')?.addEventListener('change', function(e) {
+            const emailField = document.getElementById('emailField');
+            if (emailField) {
+                emailField.style.display = e.target.checked ? 'block' : 'none';
+            }
+        });
+
+        // Alert function
+        function showAlert(message, type) {
+            const alertContainer = document.getElementById('alertContainer');
+            alertContainer.className = `alert ${type}`;
+            alertContainer.innerHTML = message;
+            alertContainer.style.display = 'block';
+            
+            setTimeout(() => {
+                alertContainer.style.display = 'none';
+            }, 3000);
+        }
+
+        // Show progress bar
+        function showProgress() {
+            document.getElementById('progressBar').style.display = 'block';
+        }
+
+        // Hide progress bar
+        function hideProgress() {
+            document.getElementById('progressBar').style.display = 'none';
+        }
+
+        // Show dasha details
+        function showDashaDetails(planet) {
+            const detailsDiv = document.getElementById('dashaDetails');
+            const details = {
+                mars: {
+                    title: 'Mars Dasha (2023-2030)',
+                    desc: 'Period of action, courage, and initiative. Good for career starts, competitions, and physical activities. Avoid conflicts and impulsive decisions.'
+                },
+                rahu: {
+                    title: 'Rahu Dasha (2030-2048)',
+                    desc: 'Period of ambition, foreign connections, and material desires. Focus on innovation but avoid speculation and addictions.'
+                },
+                jupiter: {
+                    title: 'Jupiter Dasha (2048-2064)',
+                    desc: 'Period of wisdom, expansion, and good fortune. Excellent for education, spirituality, and family growth.'
+                },
+                saturn: {
+                    title: 'Saturn Dasha (2064-2083)',
+                    desc: 'Period of discipline, hard work, and karmic results. Focus on responsibilities, service, and long-term planning.'
+                },
+                mercury: {
+                    title: 'Mercury Dasha (2083-2100)',
+                    desc: 'Period of communication, business, and intellect. Good for learning, writing, and trading.'
+                }
+            };
+            
+            if (details[planet]) {
+                detailsDiv.innerHTML = `<p><strong>${details[planet].title}:</strong> ${details[planet].desc}</p>`;
+                detailsDiv.style.display = 'block';
+            }
+        }
+
+        // Main report generation function
+        function generateReport() {
+            // Show loading spinner
+            document.getElementById('generateSpinner').style.display = 'inline-block';
+            document.getElementById('buttonText').textContent = ' Generating Report...';
+            showProgress();
+            
+            // Collect all form data
+            const birthData = {
+                basic: {
+                    dob: document.getElementById('dob')?.value || 'Not provided',
+                    tob: document.getElementById('tob')?.value || 'Not provided',
+                    place: document.getElementById('place')?.value || 'Not provided',
+                    latitude: document.getElementById('latitude')?.value || 'Not provided',
+                    longitude: document.getElementById('longitude')?.value || 'Not provided',
+                    timezone: document.getElementById('timezone')?.value || '5.5'
+                },
+                advanced: {
+                    ayanamsa: document.getElementById('ayanamsa')?.value || 'lahiri',
+                    houseSystem: document.getElementById('houseSystem')?.value || 'whole',
+                    divisionalChart: Array.from(document.getElementById('divisionalChart')?.selectedOptions || []).map(opt => opt.value),
+                    options: {
+                        dasha: document.getElementById('dashaCalculation')?.checked || false,
+                        yoga: document.getElementById('yogaDetection')?.checked || false,
+                        ashtakavarga: document.getElementById('ashtakavarga')?.checked || false,
+                        transit: document.getElementById('transitAnalysis')?.checked || false,
+                        compatibility: document.getElementById('compatibility')?.checked || false,
+                        muhurtha: document.getElementById('muhurtha')?.checked || false
+                    }
+                },
+                reports: {
+                    type: document.getElementById('reportType')?.value || 'comprehensive',
+                    period: document.getElementById('reportPeriod')?.value || 'current',
+                    format: document.getElementById('reportFormat')?.value || 'detailed',
+                    pdf: document.getElementById('pdfReport')?.checked || false,
+                    email: document.getElementById('emailReport')?.checked || false,
+                    emailAddress: document.getElementById('emailAddress')?.value || '',
+                    notes: document.getElementById('reportNotes')?.value || ''
+                },
+                remedies: {
+                    type: document.getElementById('remedyType')?.value || 'all',
+                    budget: document.getElementById('budgetRange')?.value || 'any',
+                    categories: {
+                        gemstones: document.getElementById('gemstoneRemedies')?.checked || false,
+                        mantras: document.getElementById('mantraRemedies')?.checked || false,
+                        rituals: document.getElementById('ritualRemedies')?.checked || false,
+                        charity: document.getElementById('charityRemedies')?.checked || false,
+                        fasting: document.getElementById('fastingRemedies')?.checked || false,
+                        color: document.getElementById('colorRemedies')?.checked || false,
+                        yoga: document.getElementById('yogaRemedies')?.checked || false
+                    },
+                    intensity: document.getElementById('remedyIntensity')?.value || 'moderate'
+                }
+            };
+
+            // Log the data (in production, send to server)
+            console.log('Generating report with data:', birthData);
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                // Hide loading spinner
+                document.getElementById('generateSpinner').style.display = 'none';
+                document.getElementById('buttonText').textContent = 'Generate Advanced Reading ✨';
+                hideProgress();
+                
+                // Show report section
+                document.getElementById('report').classList.add('show');
+                
+                // Show success message
+                showAlert('✅ Report generated successfully!', 'success');
+                
+                // Scroll to report
+                document.getElementById('report').scrollIntoView({ behavior: 'smooth' });
+                
+                // If email is requested
+                if (birthData.reports.email && birthData.reports.emailAddress) {
+                    showAlert(`📧 Report will be sent to ${birthData.reports.emailAddress}`, 'info');
+                }
+            }, 2000);
+        }
+
+        // PDF download function
+        function downloadPDF() {
+            showProgress();
+            showAlert('📥 Preparing your PDF report...', 'info');
+            
+            setTimeout(() => {
+                hideProgress();
+                showAlert('✅ PDF downloaded successfully!', 'success');
+                
+                // Create a sample PDF content (in production, use actual PDF generation)
+                const reportContent = `
+                    AI ASTRO PRO - COMPREHENSIVE ASTROLOGY REPORT
+                    ==============================================
+                    
+                    Date: ${new Date().toLocaleDateString()}
+                    
+                    BIRTH DETAILS:
+                    Date: ${document.getElementById('dob')?.value || 'N/A'}
+                    Time: ${document.getElementById('tob')?.value || 'N/A'}
+                    Place: ${document.getElementById('place')?.value || 'N/A'}
+                    
+                    PLANETARY POSITIONS:
+                    Sun: Leo (4° 23')
+                    Moon: Virgo (12° 45')
+                    Mars: Scorpio (8° 12')
+                    Mercury: Aries (2° 34')
+                    Jupiter: Sagittarius (15° 67')
+                    Venus: Libra (22° 45')
+                    Saturn: Capricorn (5° 78')
+                    Rahu: Aquarius (18° 90')
+                    Ketu: Leo (18° 90')
+                    
+                    ... (full report continues)
+                `;
+                
+                // Create a blob and download
+                const blob = new Blob([reportContent], { type: 'application/pdf' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'astro_report.pdf';
+                a.click();
+            }, 1500);
+        }
+
+        // Share report via email
+        function shareReport() {
+            const email = document.getElementById('emailAddress')?.value || prompt('Enter email address:');
+            if (email) {
+                showProgress();
+                showAlert(`📧 Sending report to ${email}...`, 'info');
+                
+                setTimeout(() => {
+                    hideProgress();
+                    showAlert(`✅ Report sent to ${email}!`, 'success');
+                }, 1500);
+            }
+        }
+
+        // Print report
+        function printReport() {
+            showAlert('🖨️ Preparing report for printing...', 'info');
+            setTimeout(() => {
+                window.print();
+            }, 500);
+        }
+
+        // Initialize on page load
+        window.onload = function() {
+            // Set default date to 30 years ago
+            const today = new Date();
+            const thirtyYearsAgo = new Date(today.setFullYear(today.getFullYear() - 30));
+            const dobInput = document.getElementById('dob');
+            if (dobInput) {
+                dobInput.value = thirtyYearsAgo.toISOString().split('T')[0];
+            }
+            
+            // Add event listeners
+            const compatibilityCheck = document.getElementById('compatibility');
+            if (compatibilityCheck) {
+                compatibilityCheck.addEventListener('change', function(e) {
+                    const section = document.getElementById('compatibilitySection');
+                    if (section) {
+                        section.style.display = e.target.checked ? 'block' : 'none';
+                    }
+                });
+            }
+            
+            const emailCheck = document.getElementById('emailReport');
+            if (emailCheck) {
+                emailCheck.addEventListener('change', function(e) {
+                    const emailField = document.getElementById('emailField');
+                    if (emailField) {
+                        emailField.style.display = e.target.checked ? 'block' : 'none';
+                    }
+                });
+            }
+            
+            // Welcome message
+            showAlert('✨ Welcome to AI Astro Pro! Fill in your details to begin.', 'info');
+        };
+    </script>
+</body>
+</html>
